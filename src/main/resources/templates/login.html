@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Signin Template for Bootstrap</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/signin.css">
+</head>
+
+<body class="text-center">
+<form class="form-signin" action="dashboard.html" method="post">
+    <img class="mb-4" src="img/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label class="sr-only" th:text="username">Username</label>
+    <input type="text" name="username" class="form-control" th:placeholder="username" placeholder="Username" required=""
+           autofocus="">
+    <label class="sr-only" th:text="password">Password</label>
+    <input type="password" name="password" class="form-control" th:placeholder="password" placeholder="Password"
+           required="">
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me"> 记住我
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+</form>
+
+</body>
+
+</html>

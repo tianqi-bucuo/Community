@@ -3,35 +3,24 @@
 <mapper namespace="com.cky.community.dao.UserMapper">
     <resultMap id="BaseResultMap" type="com.cky.community.entity.User">
         <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="account_id" jdbcType="VARCHAR" property="accountId" />
         <result column="name" jdbcType="VARCHAR" property="name" />
-        <result column="token" jdbcType="CHAR" property="token" />
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     </resultMap>
     
     <sql id="Base_Column_List">
-      id, account_id, name, token, create_time
+      id, name, create_time
     </sql>
     
-    <insert id="insert" parameterType="com.cky.community.entity.User">
-        insert into USER (id, account_id, name, token, create_time) values
-        (#{id}, #{accountId}, #{name}, #{token}, #{createTime})
+    <insert id="create" parameterType="com.cky.community.entity.User">
+        insert into USER (id, name, create_time) values
+        (#{id}, #{name}, #{createTime})
     </insert>
 
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from user
         where id = #{id}
     </select>
-
-    <select id="findByToken">
-        select
-        <include refid="Base_Column_List" />
-        from user
-        where token = #{token}
-    </select>
-
-
 
 </mapper>

@@ -3,7 +3,8 @@ package com.cky.community.service;
 import com.cky.community.entity.User;
 
 public interface UserService {
+
     void userRegister(User user);
 
-    User selectByPrimaryKey(int id);
+    User findById(int id);
 }

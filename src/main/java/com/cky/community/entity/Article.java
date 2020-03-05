@@ -2,15 +2,16 @@ package com.cky.community.entity;
 
 import java.util.Date;
 
-public class Question {
+public class Article {
+
     private int id;
     private String title;
-    private String description;
-    private Date createTime;
+    private String content;
     private int commentCount;
     private int viewCount;
     private int likeCount;
     private String tag;
+    private Date createTime;
     private int authorId;
 
     public int getId() {
@@ -29,20 +30,12 @@ public class Question {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getContent() {
+        return content;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public int getCommentCount() {
@@ -75,6 +68,14 @@ public class Question {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public int getAuthorId() {

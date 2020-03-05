@@ -14,11 +14,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void userRegister(User user) {
-        userMapper.insert(user);
+        userMapper.create(user);
     }
 
     @Override
-    public User selectByPrimaryKey(int id) {
-        return userMapper.selectByPrimaryKey(id);
+    public User findById(int id) {
+        return userMapper.findById(id);
     }
 }
