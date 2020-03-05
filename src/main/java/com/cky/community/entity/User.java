@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class User {
     private int id;
-    private String account_id;
+    private String accountId;
     private String name;
     private String token;
-    private Date create_time;
+    private Date createTime;
 
     public int getId() {
         return id;
@@ -17,12 +17,12 @@ public class User {
         this.id = id;
     }
 
-    public String getAccount_id() {
-        return account_id;
+    public String getAccountId() {
+        return accountId;
     }
 
-    public void setAccount_id(String account_id) {
-        this.account_id = account_id;
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
     public String getName() {
@@ -41,22 +41,22 @@ public class User {
         this.token = token;
     }
 
-    public Date getCreate_time() {
-        return create_time;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreate_time(Date create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", account_id='" + account_id + '\'' +
+                ", account_id='" + accountId + '\'' +
                 ", name='" + name + '\'' +
                 ", token='" + token + '\'' +
-                ", create_time=" + create_time +
+                ", create_time=" + createTime +
                 '}';
     }
 }

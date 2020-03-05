@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+/**
+ * 使用okhttp向github发post请求的工具类
+ */
 @Component
 public class GithubProvider {
     public String getAccessToken(AccessTokenDto accessTokenDto){

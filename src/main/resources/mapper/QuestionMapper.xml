@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cky.community.dao.QuestionMapper">
+    <resultMap id="BaseResultMap" type="com.cky.community.entity.Question">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+        <result column="view_count" jdbcType="INTEGER" property="viewCount" />
+        <result column="like_count" jdbcType="INTEGER" property="likeCount" />
+        <result column="tag" jdbcType="VARCHAR" property="tag" />
+        <result column="author_id" jdbcType="INTEGER" property="authorId" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+      id, title, description, craete_time, comment_count,
+      view_count, like_count, tag, author_id
+    </sql>
+
+    <insert id="insert" parameterType="com.cky.community.entity.Question">
+        insert into question (id, title, description, craete_time, comment_count,
+      view_count, like_count, tag, author_id) values
+        (#{id}, #{title}, #{description}, #{tag}, #{author_id})
+    </insert>
+
+</mapper>
