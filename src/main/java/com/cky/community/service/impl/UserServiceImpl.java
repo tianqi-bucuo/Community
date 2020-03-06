@@ -12,13 +12,25 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
+
     @Override
-    public void userRegister(User user) {
-        userMapper.create(user);
+    public void userRegister(String userName,String password) {
+            userMapper.create(userName, password);
     }
 
     @Override
     public User findById(int id) {
         return userMapper.findById(id);
+    }
+
+    /**
+     * 登陆
+     * @param userName
+     * @param password
+     * @return
+     */
+    @Override
+    public User login(String userName, String password) {
+        return userMapper.login(userName, password);
     }
 }

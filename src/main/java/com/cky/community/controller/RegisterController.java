@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class LoginController {
+public class RegisterController {
 
     @Autowired
     private UserServiceImpl userService;
 
-    @GetMapping({"/login"})
+    @GetMapping({"/register"})
     public String login() {
-        return "login";
+        return "register";
     }
 
     /**
@@ -29,24 +29,17 @@ public class LoginController {
      * @param session
      * @return
      */
-    @PostMapping(value = "/login")
-    public String login(@RequestParam("userName") String userName,
+    @PostMapping("/register")
+    public String register(@RequestParam("userName") String userName,
                         @RequestParam("password") String password,
                         HttpSession session) {
         if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(password)) {
             session.setAttribute("errorMsg", "用户名或密码不能为空");
-            return "/login";
+            return "/register";
         }
-        User user = userService.login(userName, password);
-        if (user != null) {
-            session.setAttribute("user", user);
-            //session过期时间设置为7200秒 即两小时
-            //session.setMaxInactiveInterval(60 * 60 * 2);
-            return "redirect:/publish";
-        } else {
-            session.setAttribute("errorMsg", "用户名或密码错误");
-            return "login";
-        }
+        userService.userRegister(userName, password);
+        session.setAttribute("successMsg","注册成功");
+        //注册成功后返回登录界面
+        return "redirect:/login";
     }
 }
-

@@ -3,7 +3,6 @@ package com.cky.community.entity;
 import java.util.Date;
 
 public class Article {
-
     private int id;
     private String title;
     private String content;
@@ -13,6 +12,21 @@ public class Article {
     private String tag;
     private Date createTime;
     private int authorId;
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", commentCount=" + commentCount +
+                ", viewCount=" + viewCount +
+                ", likeCount=" + likeCount +
+                ", tag='" + tag + '\'' +
+                ", createTime=" + createTime +
+                ", authorId=" + authorId +
+                '}';
+    }
 
     public int getId() {
         return id;

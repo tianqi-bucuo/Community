@@ -3,17 +3,19 @@
 <mapper namespace="com.cky.community.dao.UserMapper">
     <resultMap id="BaseResultMap" type="com.cky.community.entity.User">
         <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="username" jdbcType="VARCHAR" property="userName" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="avatar" jdbcType="VARCHAR" property="avatar" />
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     </resultMap>
     
     <sql id="Base_Column_List">
-      id, name, create_time
+      id, username, password, avatar, create_time
     </sql>
     
-    <insert id="create" parameterType="com.cky.community.entity.User">
-        insert into USER (id, name, create_time) values
-        (#{id}, #{name}, #{createTime})
+    <insert id="create">
+        insert into USER (username, password) values
+        (#{userName},#{password})
     </insert>
 
     <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -21,6 +23,13 @@
         <include refid="Base_Column_List" />
         from user
         where id = #{id}
+    </select>
+
+    <select id="login" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where username = #{userName,jdbcType=VARCHAR} AND password=#{password,jdbcType=VARCHAR}
     </select>
 
 </mapper>

@@ -19,9 +19,8 @@
     </sql>
 
     <insert id="create" parameterType="com.cky.community.entity.Article">
-        insert into question (id, title, content, craete_time, comment_count,
-      view_count, like_count, tag, author_id) values
-        (#{id}, #{title}, #{content}, #{tag}, #{author_id})
+        insert into article (id, title, content, tag, author_id) values
+        (#{id}, #{title}, #{content}, #{tag}, #{authorId})
     </insert>
 
     <select id="findById" parameterType="java.lang.Integer" resultType="com.cky.community.entity.Article">
