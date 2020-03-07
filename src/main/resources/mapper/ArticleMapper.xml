@@ -14,7 +14,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-      id, title, content, craete_time, comment_count,
+      id, title, content, create_time, comment_count,
       view_count, like_count, tag, author_id
     </sql>
 
@@ -23,11 +23,22 @@
         (#{id}, #{title}, #{content}, #{tag}, #{authorId})
     </insert>
 
-    <select id="findById" parameterType="java.lang.Integer" resultType="com.cky.community.entity.Article">
+    <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from article
         where id = #{id}
+    </select>
+
+    <select id="getArticleList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from article
+        limit #{start},#{size}
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        select count(1) from article;
     </select>
 
 </mapper>

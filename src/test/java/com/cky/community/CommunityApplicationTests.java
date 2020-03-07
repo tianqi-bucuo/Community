@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -35,8 +37,9 @@ public class CommunityApplicationTests {
 
     @Test
     public void testUserMapper(){
-        User user = userMapper.findById(1);
-        System.out.println(user);
+        for (int i = 0;i < 20;i++){
+            userMapper.create(Integer.toString(i),Integer.toString(i));
+        }
     }
 
     @Test
@@ -46,11 +49,13 @@ public class CommunityApplicationTests {
 
     @Test
     public void testArticleService(){
-        Article article = new Article();
-        article.setAuthorId(1);
-        article.setContent("1");
-        article.setTag("1");
-        article.setTitle("1");
-        articleService.create(article);
+        List<Article> articles = articleMapper.getArticleList(1,5);
+        System.out.println(articles);
+    }
+
+    @Test
+    public void testArticleMapper() {
+        int count = articleMapper.count();
+        System.out.println(count);
     }
 }

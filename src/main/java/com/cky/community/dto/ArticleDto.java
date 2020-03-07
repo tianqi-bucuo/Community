@@ -1,8 +1,10 @@
-package com.cky.community.entity;
+package com.cky.community.dto;
+
+import com.cky.community.entity.User;
 
 import java.util.Date;
 
-public class Article {
+public class ArticleDto {
     private int id;
     private String title;
     private String content;
@@ -12,6 +14,7 @@ public class Article {
     private String tag;
     private Date createTime;
     private int authorId;
+    private User user;
 
     public int getId() {
         return id;
@@ -85,9 +88,17 @@ public class Article {
         this.authorId = authorId;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
-        return "Article{" +
+        return "ArticleDto{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
@@ -97,6 +108,7 @@ public class Article {
                 ", tag='" + tag + '\'' +
                 ", createTime=" + createTime +
                 ", authorId=" + authorId +
+                ", user=" + user +
                 '}';
     }
 }

@@ -32,4 +32,10 @@
         where username = #{userName,jdbcType=VARCHAR} AND password=#{password,jdbcType=VARCHAR}
     </select>
 
+    <select id="getUserList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from user
+    </select>
+
 </mapper>
