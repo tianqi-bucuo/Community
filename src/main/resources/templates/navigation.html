@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Community</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/community.css">
+    <script src="bootstrap/js/jquery-3.4.1.min.js" type="application/javascript"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:fragment="nav">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">community</span>
+                </button>
+                <a class="navbar-brand" href="/">正经社区</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <form class="navbar-form navbar-left" action="/" method="get">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="search" placeholder="搜索文章">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <!--已登录显示个人信息-->
+                    <li th:if="${session.user!=null}">
+                        <a href="/publish"> 写文章</a>
+                    </li>
+                    <li class="dropdown" th:if="${session.user != null}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <span th:text="${session.user.getUserName()}"></span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/profile/articles">我的文章</a></li>
+                            <li><a href="#">退出登录</a></li>
+                        </ul>
+                    </li>
+                    <!--未登录显示登陆-->
+                    <li th:if="${session.user == null}"><a href="/register">注册</a></li>
+                    <li th:if="${session.user == null}"><a href="/login">登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+</body>
+
+</html>

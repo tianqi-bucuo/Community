@@ -13,4 +13,6 @@ public interface ArticleService {
     Article findById(int id);
 
     PaginationDTO getArticleList(int start, int size);
+
+    PaginationDTO getArticlesByUserId(int userId,int page, int size);
 }

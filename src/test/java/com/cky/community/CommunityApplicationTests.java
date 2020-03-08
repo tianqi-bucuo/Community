@@ -55,7 +55,7 @@ public class CommunityApplicationTests {
 
     @Test
     public void testArticleMapper() {
-        int count = articleMapper.count();
-        System.out.println(count);
+        List<Article> list = articleMapper.getArticlesByUserId(1,1,5);
+        System.out.println(list);
     }
 }

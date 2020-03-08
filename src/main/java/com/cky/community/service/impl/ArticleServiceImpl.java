@@ -41,7 +41,7 @@ public class ArticleServiceImpl implements ArticleService {
     public PaginationDTO getArticleList(int page,int size) {
 
         PaginationDTO paginationDTO = new PaginationDTO();
-        int totalCount = articleMapper.count();
+        int totalCount = articleMapper.totalCount();
         int totalPage;
         if (totalCount % size==0){
             totalPage = totalCount/size;
@@ -63,6 +63,40 @@ public class ArticleServiceImpl implements ArticleService {
 
         for (Article article:articles){
             User user = userMapper.findById(article.getAuthorId());
+            ArticleDto articleDto = new ArticleDto();
+            BeanUtils.copyProperties(article, articleDto);
+            articleDto.setUser(user);
+            list.add(articleDto);
+        }
+        paginationDTO.setArticles(list);
+        return paginationDTO;
+    }
+
+    @Override
+    public PaginationDTO getArticlesByUserId(int userId, int page, int size) {
+
+        PaginationDTO paginationDTO = new PaginationDTO();
+        int totalCount = articleMapper.count(userId);
+        int totalPage;
+        if (totalCount % size==0){
+            totalPage = totalCount/size;
+        }else {
+            totalPage = totalCount/size + 1;
+        }
+        paginationDTO.setPagination(totalPage, page);
+
+        if (page<1){
+            page=1;
+        }
+        if (page>paginationDTO.getTotalPage()){
+            page = paginationDTO.getTotalPage();
+        }
+
+        int start = (page-1)*size;
+        List<Article> articles = articleMapper.getArticlesByUserId(userId,start,size);
+        List<ArticleDto> list = new ArrayList<>();
+        User user = userMapper.findById(userId);
+        for (Article article:articles){
             ArticleDto articleDto = new ArticleDto();
             BeanUtils.copyProperties(article, articleDto);
             articleDto.setUser(user);

@@ -9,11 +9,15 @@ import java.util.List;
 @Mapper
 public interface ArticleMapper {
 
+    List<Article> getArticlesByUserId(@Param("userId") int userId,@Param("start") int start,@Param("size") int size);
+
     Article findById(int id);
 
     void create(Article article);
 
     List<Article> getArticleList(@Param("start") int start,@Param("size") int size);
 
-    int count();
+    int totalCount();
+
+    int count(int userId);
 }
