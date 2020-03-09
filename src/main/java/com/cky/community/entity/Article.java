@@ -3,7 +3,7 @@ package com.cky.community.entity;
 import java.util.Date;
 
 public class Article {
-    private int id;
+    private Integer id;
     private String title;
     private String content;
     private int commentCount;
@@ -11,13 +11,14 @@ public class Article {
     private int likeCount;
     private String tag;
     private Date createTime;
+    private Date updateTime;
     private int authorId;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -77,6 +78,14 @@ public class Article {
         this.createTime = createTime;
     }
 
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
     public int getAuthorId() {
         return authorId;
     }
@@ -96,6 +105,7 @@ public class Article {
                 ", likeCount=" + likeCount +
                 ", tag='" + tag + '\'' +
                 ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
                 ", authorId=" + authorId +
                 '}';
     }

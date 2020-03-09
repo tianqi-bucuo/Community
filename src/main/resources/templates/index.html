@@ -3,11 +3,11 @@
 <head>
     <title>Community</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/community.css">
-    <script src="bootstrap/js/jquery-3.4.1.min.js" type="application/javascript"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
@@ -20,12 +20,14 @@
             <div class="media" th:each="article : ${pagination.articles}">
                 <div class="media-left">
                     <a href="#">
-                        <img class="media-object img-circle"
-                             src="https://images.cnblogs.com/cnblogs_com/cky-2907183182/1521479/o_200308043759cky-logo.png">
+                        <img class="media-object img-rounded"
+                             src="https://images.cnblogs.com/cnblogs_com/cky-2907183182/1521479/o_200309115458cky-logo.png">
                     </a>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading" th:text="${article.title}"></h4>
+                    <h4 class="media-heading" >
+                        <a th:href="@{'/article/'+ ${article.id}}" th:text="${article.title}"></a>
+                    </h4>
                     <span th:text="${article.content}"></span> <br>
                     <span class="text-desc"><span th:text="${article.commentCount}"></span> 个回复 • <span
                             th:text="${article.viewCount}"></span> 次浏览 • <span

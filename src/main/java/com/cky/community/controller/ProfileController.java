@@ -2,7 +2,6 @@ package com.cky.community.controller;
 
 import com.cky.community.dto.PaginationDTO;
 import com.cky.community.entity.User;
-import com.cky.community.service.ArticleService;
 import com.cky.community.service.impl.ArticleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,7 @@ public class ProfileController {
     @GetMapping("/profile/{action}")
     public String profile(@PathVariable(name = "action")String action, Model model,
                           @RequestParam(name = "page", defaultValue = "1") int page,
-                          @RequestParam(name = "size", defaultValue = "1") int size,
+                          @RequestParam(name = "size", defaultValue = "8") int size,
                           HttpSession session){
 
         //获取当前用户信息

@@ -18,7 +18,7 @@ public class IndexController {
     //方法参数中的page和size必须赋上默认值
     @GetMapping("/")
     public String index(Model model,@RequestParam(name = "page", defaultValue = "1") int page,
-                        @RequestParam(name = "size", defaultValue = "5") int size) {
+                        @RequestParam(name = "size", defaultValue = "8") int size) {
         PaginationDTO pagination = articleService.getArticleList(page,size);
         model.addAttribute("pagination",pagination);
         return "index";

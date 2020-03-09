@@ -20,4 +20,6 @@ public interface ArticleMapper {
     int totalCount();
 
     int count(int userId);
+
+    void update(Article article);
 }

@@ -10,7 +10,7 @@ public interface ArticleService {
 
     void create(Article article);
 
-    Article findById(int id);
+    ArticleDto findById(int id);
 
     PaginationDTO getArticleList(int start, int size);
 

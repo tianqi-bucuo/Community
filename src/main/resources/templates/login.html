@@ -6,14 +6,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Signin Template for Bootstrap</title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/signin.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/signin.css">
 </head>
 
 <body class="text-center">
 <form class="form-signin" action="login" method="post">
-    <img class="mb-4" src="img/bootstrap-solid.svg" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <img class="mb-4" src="img/l.png" alt="" width="280" height="280">
+    <h1 class="h3 mb-3 font-weight-normal">please sign in</h1>
     <div th:if="${not #strings.isEmpty(session.errorMsg)}" class="form-group">
         <div class="alert alert-danger" th:text="${session.errorMsg}"></div>
     </div>

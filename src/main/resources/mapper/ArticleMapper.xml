@@ -6,6 +6,7 @@
         <result column="title" jdbcType="VARCHAR" property="title" />
         <result column="content" jdbcType="VARCHAR" property="content" />
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
         <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
         <result column="view_count" jdbcType="INTEGER" property="viewCount" />
         <result column="like_count" jdbcType="INTEGER" property="likeCount" />
@@ -14,7 +15,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-      id, title, content, create_time, comment_count,
+      id, title, content, create_time,update_time, comment_count,
       view_count, like_count, tag, author_id
     </sql>
 
@@ -53,5 +54,12 @@
         select count(1) from article
         where author_id = #{userId};
     </select>
+
+    <update id="update">
+        update article
+        set title=#{title},content=#{content},
+        tag=#{tag},update_time=#{updateTime}
+        where id=#{id}
+    </update>
 
 </mapper>

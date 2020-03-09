@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -17,7 +20,7 @@ public class LoginController {
     @Autowired
     private UserServiceImpl userService;
 
-    @GetMapping({"/login"})
+    @GetMapping("/login")
     public String login() {
         return "login";
     }
@@ -47,6 +50,29 @@ public class LoginController {
             session.setAttribute("errorMsg", "用户名或密码错误");
             return "login";
         }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request,
+                         HttpServletResponse response){
+        //清除session
+        request.getSession().removeAttribute("user");
+        //清除cookie
+        Cookie[] cookies=request.getCookies();
+        if (cookies!=null && cookies.length!=0){
+            try{
+                for(int i=0;i<cookies.length;i++){
+                    Cookie cookie = new Cookie("cookie",null);
+                    cookie.setMaxAge(0);
+                    //根据你创建cookie的路径进行填写
+                    cookie.setPath("/");
+                    response.addCookie(cookie);
+                }
+            }catch(Exception ex){
+                System.out.println("清理cookie异常");
+            }
+        }
+        return "redirect:/";
     }
 }
 

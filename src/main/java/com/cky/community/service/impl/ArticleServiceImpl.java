@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -33,8 +34,13 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article findById(int id) {
-        return articleMapper.findById(id);
+    public ArticleDto findById(int id) {
+        Article article = articleMapper.findById(id);
+        ArticleDto articleDto = new ArticleDto();
+        BeanUtils.copyProperties(article, articleDto);
+        User user = userMapper.findById(article.getAuthorId());
+        articleDto.setUser(user);
+        return articleDto;
     }
 
     @Override
@@ -104,5 +110,16 @@ public class ArticleServiceImpl implements ArticleService {
         }
         paginationDTO.setArticles(list);
         return paginationDTO;
+    }
+
+    public void createOrUpdate(Article article) {
+        if (article.getId()==null){
+            //创建
+            articleMapper.create(article);
+        }else {
+            //更新
+            article.setUpdateTime(new Date());
+            articleMapper.update(article);
+        }
     }
 }
