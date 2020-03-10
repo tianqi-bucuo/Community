@@ -3,7 +3,7 @@ package com.cky.community.service.impl;
 import com.cky.community.dao.ArticleMapper;
 import com.cky.community.dao.UserMapper;
 import com.cky.community.dto.ArticleDto;
-import com.cky.community.dto.PaginationDTO;
+import com.cky.community.dto.PaginationDto;
 import com.cky.community.entity.Article;
 import com.cky.community.entity.User;
 import com.cky.community.service.ArticleService;
@@ -44,9 +44,9 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public PaginationDTO getArticleList(int page,int size) {
+    public PaginationDto getArticleList(int page, int size) {
 
-        PaginationDTO paginationDTO = new PaginationDTO();
+        PaginationDto paginationDto = new PaginationDto();
         int totalCount = articleMapper.totalCount();
         int totalPage;
         if (totalCount % size==0){
@@ -54,13 +54,13 @@ public class ArticleServiceImpl implements ArticleService {
         }else {
             totalPage = totalCount/size + 1;
         }
-        paginationDTO.setPagination(totalPage, page);
+        paginationDto.setPagination(totalPage, page);
 
         if (page<1){
             page=1;
         }
-        if (page>paginationDTO.getTotalPage()){
-            page = paginationDTO.getTotalPage();
+        if (page> paginationDto.getTotalPage()){
+            page = paginationDto.getTotalPage();
         }
 
         int start = (page-1)*size;
@@ -74,14 +74,14 @@ public class ArticleServiceImpl implements ArticleService {
             articleDto.setUser(user);
             list.add(articleDto);
         }
-        paginationDTO.setArticles(list);
-        return paginationDTO;
+        paginationDto.setArticles(list);
+        return paginationDto;
     }
 
     @Override
-    public PaginationDTO getArticlesByUserId(int userId, int page, int size) {
+    public PaginationDto getArticlesByUserId(int userId, int page, int size) {
 
-        PaginationDTO paginationDTO = new PaginationDTO();
+        PaginationDto paginationDto = new PaginationDto();
         int totalCount = articleMapper.count(userId);
         int totalPage;
         if (totalCount % size==0){
@@ -89,13 +89,13 @@ public class ArticleServiceImpl implements ArticleService {
         }else {
             totalPage = totalCount/size + 1;
         }
-        paginationDTO.setPagination(totalPage, page);
+        paginationDto.setPagination(totalPage, page);
 
         if (page<1){
             page=1;
         }
-        if (page>paginationDTO.getTotalPage()){
-            page = paginationDTO.getTotalPage();
+        if (page> paginationDto.getTotalPage()){
+            page = paginationDto.getTotalPage();
         }
 
         int start = (page-1)*size;
@@ -108,10 +108,11 @@ public class ArticleServiceImpl implements ArticleService {
             articleDto.setUser(user);
             list.add(articleDto);
         }
-        paginationDTO.setArticles(list);
-        return paginationDTO;
+        paginationDto.setArticles(list);
+        return paginationDto;
     }
 
+    @Override
     public void createOrUpdate(Article article) {
         if (article.getId()==null){
             //创建
@@ -121,5 +122,10 @@ public class ArticleServiceImpl implements ArticleService {
             article.setUpdateTime(new Date());
             articleMapper.update(article);
         }
+    }
+
+    @Override
+    public void incViewCount(int id) {
+        articleMapper.incViewCount(id);
     }
 }

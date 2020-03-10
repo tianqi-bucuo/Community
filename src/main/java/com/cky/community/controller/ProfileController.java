@@ -1,6 +1,6 @@
 package com.cky.community.controller;
 
-import com.cky.community.dto.PaginationDTO;
+import com.cky.community.dto.PaginationDto;
 import com.cky.community.entity.User;
 import com.cky.community.service.impl.ArticleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +37,8 @@ public class ProfileController {
             model.addAttribute("section","replies");
             model.addAttribute("sectionName","最新回复");
         }
-        PaginationDTO paginationDTO = articleService.getArticlesByUserId(userId,page,size);
-        model.addAttribute("pagination",paginationDTO);
+        PaginationDto paginationDto = articleService.getArticlesByUserId(userId,page,size);
+        model.addAttribute("pagination", paginationDto);
         return "profile";
     }
 }

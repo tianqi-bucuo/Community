@@ -22,4 +22,10 @@ public interface ArticleMapper {
     int count(int userId);
 
     void update(Article article);
+
+    void incCommentCount(int id);
+
+    void incViewCount(int id);
+
+    void incLikeCount(int id);
 }

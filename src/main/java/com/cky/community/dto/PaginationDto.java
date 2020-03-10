@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 一个分页，包含此分页的文章和页码信息
  */
-public class PaginationDTO {
+public class PaginationDto {
     //封装文章的集合
     private List<ArticleDto> articles;
     private boolean showPrevious;

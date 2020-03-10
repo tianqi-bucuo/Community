@@ -17,6 +17,8 @@ public class ArticleController {
     @GetMapping("/article/{id}")
     public String article(@PathVariable(name = "id") int id,Model model){
         ArticleDto articleDto = articleService.findById(id);
+        //累计阅读数
+        articleService.incViewCount(id);
         model.addAttribute("article",articleDto);
         return "article";
     }

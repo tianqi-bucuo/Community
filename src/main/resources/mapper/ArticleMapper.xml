@@ -62,4 +62,22 @@
         where id=#{id}
     </update>
 
+    <update id="incViewCount" parameterType="java.lang.Integer">
+        update article
+        set view_count = view_count+1
+        where id = #{id}
+    </update>
+
+    <update id="incCommentCount" parameterType="java.lang.Integer">
+        update article
+        set comment_count = comment_count+1
+        where id = #{id}
+    </update>
+
+    <update id="incLikeCount" parameterType="java.lang.Integer">
+        update article
+        set like_count = like_count+1
+        where id = #{id}
+    </update>
+
 </mapper>
