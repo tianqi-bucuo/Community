@@ -4,9 +4,8 @@ import java.util.Date;
 
 public class Comment {
     private Integer id;
-    private Integer parentId;
+    private Integer articleId;
     private String content;
-    private Integer commentType;
     private Integer userId;
     private Date createTime;
     private Date updateTime;
@@ -20,14 +19,6 @@ public class Comment {
         this.id = id;
     }
 
-    public Integer getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
-    }
-
     public String getContent() {
         return content;
     }
@@ -36,12 +27,12 @@ public class Comment {
         this.content = content;
     }
 
-    public Integer getCommentType() {
-        return commentType;
+    public Integer getArticleId() {
+        return articleId;
     }
 
-    public void setCommentType(Integer commentType) {
-        this.commentType = commentType;
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
     }
 
     public Integer getUserId() {
@@ -76,17 +67,4 @@ public class Comment {
         this.likeCount = likeCount;
     }
 
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "id=" + id +
-                ", articleId=" + parentId +
-                ", content='" + content + '\'' +
-                ", commentType=" + commentType +
-                ", userId=" + userId +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", likeCount=" + likeCount +
-                '}';
-    }
 }

@@ -3,12 +3,11 @@
 <head>
     <title th:text="${article.title}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="/js/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/css/community.css">
-    <script src="/js/jquery-3.4.1.min.js"></script>
-    <script src="/js/community.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/community.css">
 </head>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
@@ -26,12 +25,6 @@
                 阅读数： <span th:text="${article.viewCount}"></span>
                 </span>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 top-header"
-                     th:if="${!#lists.isEmpty(#httpServletRequest.getServletContext().getAttribute('HEADER'))}"
-                     th:each="ad : ${#httpServletRequest.getServletContext().getAttribute('HEADER')}">
-                    <img src="/images/hot.png"/>
-                </div>
 
                 <!--内容-->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="question-view">
@@ -56,7 +49,7 @@
             </div>
 
             <!--回复输入框-->
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div th:if="${session.user != null}" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h4>
                     提交回复
                 </h4>
@@ -65,22 +58,17 @@
                     <div class="media">
                         <div class="media-left">
                             <a href="#">
-                                <img class="media-object img-rounded"
-                                     th:src="${session.user != null ? session.user.avatar : '/images/default-avatar.png'}">
+                                <img class="media-object img-circle"
+                                     src="/img/cky-logo.png">
                             </a>
                         </div>
-                        <div class="media-body">
-                            <h5 class="media-heading">
-                                <span th:text="${session.user != null ? session.user.userName : '匿名用户'}"></span>
-                            </h5>
-                        </div>
                     </div>
-                    <input type="hidden" id="question_id" th:value="${article.id}">
+                    <input type="hidden" id="article_id" th:value="${article.id}">
+                    <input type="hidden" id="user_id" th:value="${session.user.id}">
                     <textarea class="form-control comment" rows="6" id="comment_content"></textarea>
-                    <button type="button" class="btn btn-success btn-comment" onclick="post()">回复</button>
+                    <button type="button" class="btn btn-success btn-comment" onclick="submit()">回复</button>
                 </div>
             </div>
-
         </div>
 
         <!--右边信息块-->
@@ -91,7 +79,7 @@
                     <div class="media-left">
                         <a href="#">
                             <img class="media-object img-rounded"
-                                 src="https://images.cnblogs.com/cnblogs_com/cky-2907183182/1521479/o_200309115458cky-logo.png">
+                                 src="/img/cky-logo.png">
                         </a>
                     </div>
                     <div class="media-body">
@@ -105,4 +93,20 @@
     </div>
 </div>
 </body>
+<script>
+    function submit() {
+        $.ajax({
+            type: "POST",
+            url: "/comment",
+            contentType: 'application/json',
+            data: JSON.stringify({
+                articleId: $("#article_id").val(),
+                content: $("#comment_content").val(),
+                userId: $("#user_id").val()
+            }),
+            dataType: "json"
+        });
+        window.location.reload();
+    }
+</script>
 </html>

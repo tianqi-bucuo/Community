@@ -3,9 +3,8 @@
 <mapper namespace="com.cky.community.dao.CommentMapper">
     <resultMap id="BaseResultMap" type="com.cky.community.entity.Comment">
         <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+        <result column="article_id" jdbcType="INTEGER" property="articleId" />
         <result column="content" jdbcType="VARCHAR" property="content" />
-        <result column="comment_type" jdbcType="INTEGER" property="commentType" />
         <result column="user_id" jdbcType="INTEGER" property="userId" />
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -13,12 +12,12 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-      id, parent_id, content, comment_type, user_id, create_time,update_time,like_count
+      id, article_id, content, user_id, create_time,update_time,like_count
     </sql>
 
     <insert id="create" parameterType="com.cky.community.entity.Comment">
-        insert into comment (parent_id, content, comment_type, user_id)
-        values (#{parentId},#{content},#{commentType},#{userId},)
+        insert into comment (article_id, content, user_id)
+        values (#{articleId},#{content},#{userId})
     </insert>
 
     <select id="findByArticleId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
