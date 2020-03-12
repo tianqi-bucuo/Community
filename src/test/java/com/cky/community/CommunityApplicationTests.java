@@ -1,10 +1,14 @@
 package com.cky.community;
 
 import com.cky.community.dao.ArticleMapper;
+import com.cky.community.dao.CommentMapper;
 import com.cky.community.dao.UserMapper;
+import com.cky.community.dto.CommentDto;
 import com.cky.community.entity.Article;
+import com.cky.community.entity.Comment;
 import com.cky.community.entity.User;
 import com.cky.community.service.impl.ArticleServiceImpl;
+import com.cky.community.service.impl.CommentServiceImpl;
 import com.cky.community.service.impl.UserServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +34,12 @@ public class CommunityApplicationTests {
 
     @Autowired
     UserServiceImpl userService;
+
+    @Autowired
+    CommentServiceImpl commentService;
+
+    @Autowired
+    CommentMapper commentMapper;
 
     @Test
     public void contextLoads() {
@@ -57,5 +67,18 @@ public class CommunityApplicationTests {
     public void testArticleMapper() {
         List<Article> list = articleMapper.getArticlesByUserId(1,1,5);
         System.out.println(list);
+    }
+
+
+    @Test
+    public void testCommentService(){
+        List<CommentDto> list = commentService.getCommentList(7);
+        System.out.println(list);
+    }
+
+    @Test
+    public void testCommentMapper(){
+        List<Comment> comments = commentMapper.findByArticleId(7);
+        System.out.println(comments);
     }
 }

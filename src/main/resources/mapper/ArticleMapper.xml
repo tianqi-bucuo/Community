@@ -35,6 +35,7 @@
         select
         <include refid="Base_Column_List" />
         from article
+        order by update_time desc
         limit #{start},#{size}
     </select>
 

@@ -24,7 +24,8 @@
         select
         <include refid="Base_Column_List" />
         from comment
-        where Article_id = #{articleId}
+        where article_id = #{articleId}
+        order by create_time desc
     </select>
 
     <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">

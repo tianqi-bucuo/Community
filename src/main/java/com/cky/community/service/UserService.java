@@ -1,7 +1,6 @@
 package com.cky.community.service;
 
 import com.cky.community.entity.User;
-import org.apache.ibatis.annotations.Param;
 
 public interface UserService {
 

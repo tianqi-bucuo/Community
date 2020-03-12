@@ -18,4 +18,6 @@ public interface ArticleService {
 
     void incViewCount(int id);
 
+    void incCommentCount(int id);
+
 }

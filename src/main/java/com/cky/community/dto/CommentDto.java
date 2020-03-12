@@ -1,8 +1,10 @@
-package com.cky.community.entity;
+package com.cky.community.dto;
+
+import com.cky.community.entity.User;
 
 import java.util.Date;
 
-public class Comment {
+public class CommentDto {
     private Integer id;
     private Integer articleId;
     private String content;
@@ -10,6 +12,7 @@ public class Comment {
     private Date createTime;
     private Date updateTime;
     private Integer likeCount;
+    private User user;
 
     public Integer getId() {
         return id;
@@ -19,20 +22,20 @@ public class Comment {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public Integer getArticleId() {
         return articleId;
     }
 
     public void setArticleId(Integer articleId) {
         this.articleId = articleId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Integer getUserId() {
@@ -67,9 +70,17 @@ public class Comment {
         this.likeCount = likeCount;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
-        return "Comment{" +
+        return "CommentDto{" +
                 "id=" + id +
                 ", articleId=" + articleId +
                 ", content='" + content + '\'' +
@@ -77,6 +88,7 @@ public class Comment {
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 ", likeCount=" + likeCount +
+                ", user=" + user +
                 '}';
     }
 }

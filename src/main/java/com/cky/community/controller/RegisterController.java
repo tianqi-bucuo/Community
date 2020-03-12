@@ -1,6 +1,5 @@
 package com.cky.community.controller;
 
-import com.cky.community.entity.User;
 import com.cky.community.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

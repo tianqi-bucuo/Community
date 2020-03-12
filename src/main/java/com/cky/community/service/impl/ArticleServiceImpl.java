@@ -49,7 +49,9 @@ public class ArticleServiceImpl implements ArticleService {
         PaginationDto paginationDto = new PaginationDto();
         int totalCount = articleMapper.totalCount();
         int totalPage;
-        if (totalCount % size==0){
+        if (totalCount==0){
+            totalPage = 1;
+        }else if (totalCount % size==0){
             totalPage = totalCount/size;
         }else {
             totalPage = totalCount/size + 1;
@@ -127,5 +129,10 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void incViewCount(int id) {
         articleMapper.incViewCount(id);
+    }
+
+    @Override
+    public void incCommentCount(int id) {
+        articleMapper.incCommentCount(id);
     }
 }

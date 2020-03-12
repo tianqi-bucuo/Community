@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/bootstrap/css/bootstrap-theme.min.css">
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/css/community.css">
+    <script src="/js/community.js"></script>
 </head>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
@@ -27,9 +28,7 @@
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                 <!--内容-->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="question-view">
-                    <textarea th:text="${article.content}"></textarea>
-                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${article.content}"></div>
 
                 <!--编辑-->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -46,6 +45,26 @@
                     <span th:text="${article.commentCount}"></span> 个回复
                 </h4>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment-sp">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comments" th:each="comment : ${comments}">
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="media-object img-rounded"
+                                     src="/img/cky-logo.png">
+                            </a>
+                        </div>
+                        <div class="media-body" th:id="${'comment-body-'+comment.id}">
+                            <h5 class="media-heading">
+                                <span th:text="${comment.user.userName}"></span>
+                            </h5>
+                            <div th:text="${comment.content}"></div>
+                            <div class="menu">
+                                <span class="glyphicon glyphicon-thumbs-up icon"></span>
+                                <span class="pull-right" th:text="${#dates.format(comment.createTime,'yyyy-MM-dd HH:mm')}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!--回复输入框-->
@@ -78,7 +97,7 @@
                 <div class="media">
                     <div class="media-left">
                         <a href="#">
-                            <img class="media-object img-rounded"
+                            <img class="media-object img-circle"
                                  src="/img/cky-logo.png">
                         </a>
                     </div>
@@ -93,20 +112,5 @@
     </div>
 </div>
 </body>
-<script>
-    function submit() {
-        $.ajax({
-            type: "POST",
-            url: "/comment",
-            contentType: 'application/json',
-            data: JSON.stringify({
-                articleId: $("#article_id").val(),
-                content: $("#comment_content").val(),
-                userId: $("#user_id").val()
-            }),
-            dataType: "json"
-        });
-        window.location.reload();
-    }
-</script>
+
 </html>
