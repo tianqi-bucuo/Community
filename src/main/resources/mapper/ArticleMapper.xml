@@ -29,6 +29,22 @@
         <include refid="Base_Column_List" />
         from article
         where id = #{id}
+        order by update_time desc
+    </select>
+
+    <select id="getRelatedArticles" parameterType="com.cky.community.entity.Article" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from article
+        <where>
+            <if test="id != null">
+                and id != #{id}
+            </if>
+            <if test="tag != null and tag != ''">
+                and tag regexp #{tag}
+            </if>
+        </where>
+        order by create_time desc limit 20
     </select>
 
     <select id="getArticleList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -48,6 +64,7 @@
         <include refid="Base_Column_List" />
         from article
         where author_id = #{userId}
+        order by update_time desc
         limit #{start},#{size}
     </select>
 

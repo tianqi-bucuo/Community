@@ -1,8 +1,6 @@
 package com.cky.community.component.intercept;
 
-import com.cky.community.dao.UserMapper;
 import com.cky.community.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;

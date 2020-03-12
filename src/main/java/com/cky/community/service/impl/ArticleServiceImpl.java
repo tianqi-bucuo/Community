@@ -7,13 +7,16 @@ import com.cky.community.dto.PaginationDto;
 import com.cky.community.entity.Article;
 import com.cky.community.entity.User;
 import com.cky.community.service.ArticleService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -112,6 +115,31 @@ public class ArticleServiceImpl implements ArticleService {
         }
         paginationDto.setArticles(list);
         return paginationDto;
+    }
+
+    @Override
+    public List<ArticleDto> getRelatedArticles(ArticleDto queryDto) {
+        if (StringUtils.isBlank(queryDto.getTag())) {
+            return new ArrayList<>();
+        }
+        String[] tags = StringUtils.split(queryDto.getTag(), " ");
+        String regexpTag = Arrays
+                .stream(tags)
+                .filter(StringUtils::isNotBlank)
+                .map(t -> t.replace("+", "").replace("*", "").replace("?", ""))
+                .filter(StringUtils::isNotBlank)
+                .collect(Collectors.joining("|"));
+        Article article = new Article();
+        article.setId(queryDto.getId());
+        article.setTag(regexpTag);
+
+        List<Article> questions = articleMapper.getRelatedArticles(article);
+        List<ArticleDto> articleDtos = questions.stream().map(q -> {
+            ArticleDto questionDTO = new ArticleDto();
+            BeanUtils.copyProperties(q, questionDTO);
+            return questionDTO;
+        }).collect(Collectors.toList());
+        return articleDtos;
     }
 
     @Override

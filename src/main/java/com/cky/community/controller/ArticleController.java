@@ -1,7 +1,9 @@
 package com.cky.community.controller;
 
+import com.cky.community.dao.ArticleMapper;
 import com.cky.community.dto.ArticleDto;
 import com.cky.community.dto.CommentDto;
+import com.cky.community.entity.Article;
 import com.cky.community.entity.Comment;
 import com.cky.community.service.impl.ArticleServiceImpl;
 import com.cky.community.service.impl.CommentServiceImpl;
@@ -17,6 +19,9 @@ import java.util.List;
 public class ArticleController {
 
     @Autowired
+    private ArticleMapper articleMapper;
+
+    @Autowired
     private ArticleServiceImpl articleService;
 
     @Autowired
@@ -25,12 +30,14 @@ public class ArticleController {
     @GetMapping("/article/{id}")
     public String article(@PathVariable(name = "id") int articleId,Model model){
         ArticleDto articleDto = articleService.findById(articleId);
-
+        //得到相关文章
+        List<ArticleDto> relatedArticles = articleService.getRelatedArticles(articleDto);
         List<CommentDto> comments = commentService.getCommentList(articleId);
-        //累计阅读数
-        articleService.incViewCount(articleId);
+        model.addAttribute("relatedArticles",relatedArticles);
         model.addAttribute("article",articleDto);
         model.addAttribute("comments",comments);
+        //累计阅读数
+        articleService.incViewCount(articleId);
         return "article";
     }
 }

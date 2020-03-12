@@ -17,6 +17,8 @@ public interface ArticleMapper {
 
     List<Article> getArticleList(@Param("start") int start,@Param("size") int size);
 
+    List<Article> getRelatedArticles(Article article);
+
     int totalCount();
 
     int count(int userId);

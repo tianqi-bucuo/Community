@@ -1,6 +1,5 @@
-package life.majiang.community.cache;
-
-import life.majiang.community.dto.TagDTO;
+package com.cky.community.cache;
+import com.cky.community.dto.TagDTO;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -8,9 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by codedrinker on 2019/6/5.
- */
 public class TagCache {
     public static List<TagDTO> get() {
         List<TagDTO> tagDTOS = new ArrayList<>();
@@ -43,11 +39,11 @@ public class TagCache {
     }
 
     public static String filterInvalid(String tags) {
-        String[] split = StringUtils.split(tags, ",");
+        String[] split = StringUtils.split(tags, " ");
         List<TagDTO> tagDTOS = get();
 
         List<String> tagList = tagDTOS.stream().flatMap(tag -> tag.getTags().stream()).collect(Collectors.toList());
-        String invalid = Arrays.stream(split).filter(t -> StringUtils.isBlank(t) || !tagList.contains(t)).collect(Collectors.joining(","));
+        String invalid = Arrays.stream(split).filter(t -> StringUtils.isBlank(t) || !tagList.contains(t)).collect(Collectors.joining(" "));
         return invalid;
     }
 
