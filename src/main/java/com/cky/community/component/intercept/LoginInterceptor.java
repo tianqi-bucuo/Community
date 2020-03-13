@@ -1,17 +1,23 @@
 package com.cky.community.component.intercept;
 
+import com.cky.community.dao.NotificationMapper;
 import com.cky.community.entity.User;
+import com.cky.community.service.impl.NotificationServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-
-@Component
+@Service
 public class LoginInterceptor implements HandlerInterceptor {
+
+    @Autowired
+    private NotificationServiceImpl notificationService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -20,6 +26,9 @@ public class LoginInterceptor implements HandlerInterceptor {
             request.getRequestDispatcher("/login").forward(request,response);
             return false;
         }else {
+            HttpSession session = request.getSession();
+            int unreadCount = notificationService.unreadCount(user.getId());
+            session.setAttribute("unreadCount", unreadCount);
             request.getSession().setAttribute("user",user);
         }
         return true;

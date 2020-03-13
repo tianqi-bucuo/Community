@@ -64,8 +64,8 @@ public class ArticleServiceImpl implements ArticleService {
         if (page<1){
             page=1;
         }
-        if (page> paginationDto.getTotalPage()){
-            page = paginationDto.getTotalPage();
+        if (page> totalPage){
+            page = totalPage;
         }
 
         int start = (page-1)*size;
@@ -79,7 +79,7 @@ public class ArticleServiceImpl implements ArticleService {
             articleDto.setUser(user);
             list.add(articleDto);
         }
-        paginationDto.setArticles(list);
+        paginationDto.setData(list);
         return paginationDto;
     }
 
@@ -89,7 +89,10 @@ public class ArticleServiceImpl implements ArticleService {
         PaginationDto paginationDto = new PaginationDto();
         int totalCount = articleMapper.count(userId);
         int totalPage;
-        if (totalCount % size==0){
+
+        if (totalCount==0){
+            totalPage = 1;
+        }else if (totalCount % size==0){
             totalPage = totalCount/size;
         }else {
             totalPage = totalCount/size + 1;
@@ -99,8 +102,8 @@ public class ArticleServiceImpl implements ArticleService {
         if (page<1){
             page=1;
         }
-        if (page> paginationDto.getTotalPage()){
-            page = paginationDto.getTotalPage();
+        if (page> totalPage){
+            page = totalPage;
         }
 
         int start = (page-1)*size;
@@ -113,7 +116,7 @@ public class ArticleServiceImpl implements ArticleService {
             articleDto.setUser(user);
             list.add(articleDto);
         }
-        paginationDto.setArticles(list);
+        paginationDto.setData(list);
         return paginationDto;
     }
 

@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    User findById(int id);
+    User findById(Integer id);
 
     void create(@Param("userName") String userName, @Param("password") String password);
 

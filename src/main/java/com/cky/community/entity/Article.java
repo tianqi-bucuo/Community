@@ -110,27 +110,4 @@ public class Article {
                 ", authorId=" + authorId +
                 '}';
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Article)) return false;
-        Article article = (Article) o;
-        return commentCount == article.commentCount &&
-                viewCount == article.viewCount &&
-                likeCount == article.likeCount &&
-                authorId == article.authorId &&
-                Objects.equals(id, article.id) &&
-                Objects.equals(title, article.title) &&
-                Objects.equals(content, article.content) &&
-                Objects.equals(tag, article.tag) &&
-                Objects.equals(createTime, article.createTime) &&
-                Objects.equals(updateTime, article.updateTime);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(id, title, content, commentCount, viewCount, likeCount, tag, createTime, updateTime, authorId);
-    }
 }

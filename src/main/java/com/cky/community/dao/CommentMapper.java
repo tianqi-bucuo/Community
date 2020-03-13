@@ -10,8 +10,8 @@ public interface CommentMapper {
 
     void create(Comment comment);
 
-    List<Comment> findByArticleId(int articleId);
+    List<Comment> findByArticleId(Integer articleId);
 
-    Comment findById(int id);
+    Comment findById(Integer id);
 
 }

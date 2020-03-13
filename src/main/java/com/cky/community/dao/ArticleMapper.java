@@ -9,25 +9,25 @@ import java.util.List;
 @Mapper
 public interface ArticleMapper {
 
-    List<Article> getArticlesByUserId(@Param("userId") int userId,@Param("start") int start,@Param("size") int size);
+    List<Article> getArticlesByUserId(@Param("userId") Integer userId,@Param("start") Integer start,@Param("size") Integer size);
 
-    Article findById(int id);
+    Article findById(Integer id);
 
     void create(Article article);
 
-    List<Article> getArticleList(@Param("start") int start,@Param("size") int size);
+    List<Article> getArticleList(@Param("start") Integer start,@Param("size") Integer size);
 
     List<Article> getRelatedArticles(Article article);
 
-    int totalCount();
+    Integer totalCount();
 
-    int count(int userId);
+    Integer count(Integer userId);
 
     void update(Article article);
 
-    void incCommentCount(int id);
+    void incCommentCount(Integer id);
 
-    void incViewCount(int id);
+    void incViewCount(Integer id);
 
-    void incLikeCount(int id);
+    void incLikeCount(Integer id);
 }

@@ -3,12 +3,9 @@ package com.cky.community.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 一个分页，包含此分页的文章和页码信息
- */
-public class PaginationDto {
+public class PaginationDto<T> {
     //封装文章的集合
-    private List<ArticleDto> articles;
+    private List<T> data;
     private boolean showPrevious;
     private boolean showFirstPage;
     private boolean showNext;
@@ -17,12 +14,12 @@ public class PaginationDto {
     private List<Integer> pages = new ArrayList<>();
     private Integer totalPage;
 
-    public List<ArticleDto> getArticles() {
-        return articles;
+    public List<T> getData() {
+        return data;
     }
 
-    public void setArticles(List<ArticleDto> articles) {
-        this.articles = articles;
+    public void setData(List<T> data) {
+        this.data = data;
     }
 
     public boolean isShowPrevious() {
@@ -80,7 +77,6 @@ public class PaginationDto {
     public void setTotalPage(Integer totalPage) {
         this.totalPage = totalPage;
     }
-
 
     public void setPagination(Integer totalPage, Integer page) {
         this.totalPage = totalPage;

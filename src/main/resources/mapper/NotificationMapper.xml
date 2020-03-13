@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cky.community.dao.NotificationMapper">
+    <resultMap id="BaseResultMap" type="com.cky.community.entity.Notification">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="notifier_id" jdbcType="INTEGER" property="notifierId" />
+        <result column="notifier_name" jdbcType="VARCHAR" property="notifierName" />
+        <result column="receiver_id" jdbcType="INTEGER" property="receiverId" />
+        <result column="article_id" jdbcType="INTEGER" property="articleId" />
+        <result column="article_title" jdbcType="VARCHAR" property="articleTitle" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+      id, notifier_id, notifier_name, receiver_id, article_id, article_title, status, create_time
+    </sql>
+
+    <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from notification
+        where id = #{id}
+    </select>
+
+    <update id="updateStatusById" parameterType="java.lang.Integer">
+        update notification
+        set status = 1
+        where id = #{id}
+    </update>
+
+    <select id="count" resultType="java.lang.Integer">
+        select count(1)
+        from notification
+        where receiver_id = #{userId}
+    </select>
+
+    <select id="getNotificationsByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from notification
+        where receiver_id = #{userId}
+        order by create_time desc
+        limit #{start},#{size}
+    </select>
+
+    <insert id="create" parameterType="com.cky.community.entity.Notification">
+        insert into notification (notifier_id, notifier_name, receiver_id, article_id, article_title, status,create_time) values
+        (#{notifierId},#{notifierName},#{receiverId},#{articleId},#{articleTitle},#{status},#{createTime})
+    </insert>
+
+    <select id="unreadCount" resultType="java.lang.Integer">
+        select count(1)
+        from notification
+        where receiver_id = #{userId} and status = 0
+    </select>
+
+</mapper>
