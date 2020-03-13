@@ -47,6 +47,34 @@
         order by create_time desc limit 20
     </select>
 
+    <select id="countBySearch" parameterType="com.cky.community.dto.ArticleQueryDto" resultType="java.lang.Integer">
+        select count(*) from article
+        <where>
+            <if test="search != null and search != ''">
+                and title regexp #{search}
+            </if>
+            <if test="search != null and search != ''">
+                or tag regexp #{search}
+            </if>
+        </where>
+    </select>
+
+    <select id="findBySearch" parameterType="com.cky.community.dto.ArticleQueryDto" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from article
+        <where>
+            <if test="search != null and search != ''">
+                and title regexp #{search}
+            </if>
+            <if test="search != null and search != ''">
+                or tag regexp #{search}
+            </if>
+        </where>
+        order by create_time desc
+        limit #{page},#{size}
+    </select>
+
     <select id="getArticleList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
@@ -56,7 +84,7 @@
     </select>
 
     <select id="totalCount" resultType="java.lang.Integer">
-        select count(1) from article;
+        select count(*) from article;
     </select>
 
     <select id="getArticlesByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -69,7 +97,7 @@
     </select>
 
     <select id="count" resultType="java.lang.Integer">
-        select count(1) from article
+        select count(*) from article
         where author_id = #{userId};
     </select>
 

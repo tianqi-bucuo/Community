@@ -12,7 +12,7 @@ public interface ArticleService {
 
     ArticleDto findById(int id);
 
-    PaginationDto getArticleList(int start, int size);
+    PaginationDto getArticleList(String search, int start, int size);
 
     PaginationDto getArticlesByUserId(int userId, int page, int size);
 

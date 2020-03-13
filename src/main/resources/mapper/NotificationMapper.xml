@@ -30,7 +30,7 @@
     </update>
 
     <select id="count" resultType="java.lang.Integer">
-        select count(1)
+        select count(*)
         from notification
         where receiver_id = #{userId}
     </select>
@@ -50,7 +50,7 @@
     </insert>
 
     <select id="unreadCount" resultType="java.lang.Integer">
-        select count(1)
+        select count(*)
         from notification
         where receiver_id = #{userId} and status = 0
     </select>

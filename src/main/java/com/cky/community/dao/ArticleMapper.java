@@ -1,5 +1,6 @@
 package com.cky.community.dao;
 
+import com.cky.community.dto.ArticleQueryDto;
 import com.cky.community.entity.Article;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -30,4 +31,9 @@ public interface ArticleMapper {
     void incViewCount(Integer id);
 
     void incLikeCount(Integer id);
+
+    int countBySearch(ArticleQueryDto articleQueryDto);
+
+    List<Article> findBySearch(ArticleQueryDto articleQueryDto);
+
 }

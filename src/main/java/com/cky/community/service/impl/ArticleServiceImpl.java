@@ -3,6 +3,7 @@ package com.cky.community.service.impl;
 import com.cky.community.dao.ArticleMapper;
 import com.cky.community.dao.UserMapper;
 import com.cky.community.dto.ArticleDto;
+import com.cky.community.dto.ArticleQueryDto;
 import com.cky.community.dto.PaginationDto;
 import com.cky.community.entity.Article;
 import com.cky.community.entity.User;
@@ -47,11 +48,24 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public PaginationDto getArticleList(int page, int size) {
+    public PaginationDto getArticleList(String search,int page, int size) {
+
+        if (StringUtils.isNotBlank(search)) {
+            String[] tags = StringUtils.split(search, " ");
+            search = Arrays
+                    .stream(tags)
+                    .filter(StringUtils::isNotBlank)
+                    .map(t -> t.replace("+", "").replace("*", "").replace("?", ""))
+                    .filter(StringUtils::isNotBlank)
+                    .collect(Collectors.joining("|"));
+        }
 
         PaginationDto paginationDto = new PaginationDto();
-        int totalCount = articleMapper.totalCount();
         int totalPage;
+        ArticleQueryDto articleQueryDto = new ArticleQueryDto();
+        articleQueryDto.setSearch(search);
+
+        int totalCount = articleMapper.countBySearch(new ArticleQueryDto());
         if (totalCount==0){
             totalPage = 1;
         }else if (totalCount % size==0){
@@ -69,7 +83,9 @@ public class ArticleServiceImpl implements ArticleService {
         }
 
         int start = (page-1)*size;
-        List<Article> articles = articleMapper.getArticleList(start,size);
+        articleQueryDto.setSize(size);
+        articleQueryDto.setPage(start);
+        List<Article> articles = articleMapper.findBySearch(articleQueryDto);
         List<ArticleDto> list = new ArrayList<>();
 
         for (Article article:articles){
