@@ -69,6 +69,11 @@ public class CommentServiceImpl implements CommentService {
         return commentDtoList;
     }
 
+    @Override
+    public void incLikeCount(int commentId) {
+        commentMapper.incLikeCount(commentId);
+    }
+
     private void createNotify(Comment comment, Integer receiverId, String notifierName, String articleTitle, NotificationTypeEnum notificationType, Integer articleId) {
         if (receiverId == comment.getUserId()) {
             return;

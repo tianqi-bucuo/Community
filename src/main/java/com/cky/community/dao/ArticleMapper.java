@@ -36,4 +36,5 @@ public interface ArticleMapper {
 
     List<Article> findBySearch(ArticleQueryDto articleQueryDto);
 
+    List<Article> findHotArticles();
 }

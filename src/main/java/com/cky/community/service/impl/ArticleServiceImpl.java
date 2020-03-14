@@ -73,7 +73,6 @@ public class ArticleServiceImpl implements ArticleService {
         }else {
             totalPage = totalCount/size + 1;
         }
-        paginationDto.setPagination(totalPage, page);
 
         if (page<1){
             page=1;
@@ -81,6 +80,8 @@ public class ArticleServiceImpl implements ArticleService {
         if (page> totalPage){
             page = totalPage;
         }
+
+        paginationDto.setPagination(totalPage, page);
 
         int start = (page-1)*size;
         articleQueryDto.setSize(size);
@@ -121,6 +122,7 @@ public class ArticleServiceImpl implements ArticleService {
         if (page> totalPage){
             page = totalPage;
         }
+        paginationDto.setPagination(totalPage, page);
 
         int start = (page-1)*size;
         List<Article> articles = articleMapper.getArticlesByUserId(userId,start,size);
@@ -182,4 +184,11 @@ public class ArticleServiceImpl implements ArticleService {
     public void incCommentCount(int id) {
         articleMapper.incCommentCount(id);
     }
+
+    @Override
+    public List<Article> findHotArticles() {
+        return articleMapper.findHotArticles();
+    }
+
+
 }

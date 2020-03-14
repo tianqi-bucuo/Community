@@ -33,8 +33,7 @@ public class LoginController {
      * @return
      */
     @PostMapping(value = "/login")
-    public String login(@RequestParam("userName") String userName,
-                        @RequestParam("password") String password,
+    public String login(String userName, String password,
                         HttpSession session) {
         if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(password)) {
             session.setAttribute("errorMsg", "用户名或密码不能为空");

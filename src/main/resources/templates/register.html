@@ -1,34 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Signin Template for Bootstrap</title>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/signin.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>SignUp</title>
+    <link rel="stylesheet" href="/css/login.css">
 </head>
-
-<body class="text-center">
-<form class="form-signin" action="register" method="post">
-    <img class="mb-4" src="img/l.png" alt="" width="280" height="280">
-    <h1 class="h3 mb-3 font-weight-normal">please sign up</h1>
-    <div th:if="${not #strings.isEmpty(session.errorMsg)}" class="form-group">
-        <div class="alert alert-danger" th:text="${session.errorMsg}"></div>
-    </div>
-    <div th:if="${not #strings.isEmpty(session.successMsg)}" class="form-group">
-        <div class="alert alert-danger" th:text="${session.successMsg}"></div>
-    </div>
-    <label class="sr-only" th:text="username">UserName</label>
-    <input type="text" name="userName" class="form-control" th:placeholder="username" placeholder="UserName" required=""
-           autofocus="">
-    <label class="sr-only" th:text="password">Password</label>
-    <input type="password" name="password" class="form-control" th:placeholder="password" placeholder="Password"
-           required="">
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-</form>
-
+<body>
+<img id="bg" src="/img/bg.jpg" />
+<div class="sign-div">
+    <form class="form-signin" action="/register" method="post">
+        <div th:if="${not #strings.isEmpty(session.errorMsg)}" class="form-group">
+            <div class="alert alert-danger" th:text="${session.errorMsg}"></div>
+        </div>
+        <div th:if="${not #strings.isEmpty(session.successMsg)}" class="form-group">
+            <div class="alert alert-danger" th:text="${session.successMsg}"></div>
+        </div>
+        <h1 style="color: white">注册</h1>
+        <input class="sign-text" type="text" name="userName" placeholder="用户名" required="" autofocus="">
+        <input class="sign-text" type="password" name="password" placeholder="密码" required="">
+        <input class="sign-text" type="text" name="avatar" placeholder="头像的URL,不填则使用默认头像(包你喜欢)">
+        <input class="sign-btn" type="submit" value="点击注册">
+        <a href="/login">已有账号? 点击登录</a>
+    </form>
+</div>
 </body>
-
 </html>

@@ -9,4 +9,6 @@ public interface UserService {
     User findById(int id);
 
     User login(String userName,String password);
+
+    void registerWithAvatar(String userName, String password, String avatar);
 }

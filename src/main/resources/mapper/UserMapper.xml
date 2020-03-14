@@ -38,4 +38,19 @@
         from user
     </select>
 
+    <select id="getUserNames" resultType="string">
+        select username
+        from user
+    </select>
+
+    <insert id="createWithAvatar" parameterType="string">
+        insert into user(username, password,avatar) values
+        (#{userName},#{password},#{avatar})
+    </insert>
+
+    <update id="changeAvatar" parameterType="string">
+        update user
+        set avatar = #{avatar}
+    </update>
+
 </mapper>

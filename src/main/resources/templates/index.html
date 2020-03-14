@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="/js/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/community.css">
-    <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/js/community.js"></script>
 </head>
@@ -14,7 +14,7 @@
 <div class="container-fluid main">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-            <h3><span class="glyphicon glyphicon-list" aria-hidden="true"></span> 发现</h3>
+            <h3><span class="glyphicon glyphicon-th" aria-hidden="true"></span> 文章</h3>
             <hr>
 
             <div class="media" th:each="article : ${pagination.data}">
@@ -28,7 +28,7 @@
                     <h4 class="media-heading" >
                         <a th:href="@{'/article/'+ ${article.id}}" th:text="${article.title}"></a>
                     </h4>
-                    <span th:text="${article.content}"></span> <br>
+                    <br>
                     <span class="text-desc"><span th:text="${article.commentCount}"></span> 个回复 • <span
                             th:text="${article.viewCount}"></span> 次浏览 • <span
                             th:text="${#dates.format(article.createTime,'yyyy-MM-dd HH:mm')}"></span></span>
@@ -68,6 +68,11 @@
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
             <h3>热门文章</h3>
+            <ul class="question-related">
+                <li th:each="article : ${hotArticles}">
+                    <a th:href="@{'/article/'+ ${article.id}}" th:text="${article.title}"></a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

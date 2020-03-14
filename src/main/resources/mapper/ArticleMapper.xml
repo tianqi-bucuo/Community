@@ -126,4 +126,11 @@
         where id = #{id}
     </update>
 
+    <select id="findHotArticles" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from article
+        order by comment_count desc
+        limit 5
+    </select>
 </mapper>

@@ -14,4 +14,5 @@ public interface CommentMapper {
 
     Comment findById(Integer id);
 
+    void incLikeCount(int commentId);
 }

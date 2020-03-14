@@ -13,4 +13,6 @@ public interface CommentService {
     void create(Comment comment,User user);
 
     List<CommentDto> getCommentList(int articleId);
+
+    void incLikeCount(int commentId);
 }

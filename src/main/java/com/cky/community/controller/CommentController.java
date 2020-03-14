@@ -6,9 +6,7 @@ import com.cky.community.service.impl.ArticleServiceImpl;
 import com.cky.community.service.impl.CommentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,8 +24,13 @@ public class CommentController {
     @ResponseBody
     @PostMapping(value = "/comment")
     public void create(@RequestBody Comment comment, HttpServletRequest request){
-        User user = (User) request.getSession().getAttribute("user");
-        commentService.create(comment,user);
-        articleService.incCommentCount(comment.getArticleId());
+        if (comment.getArticleId()!=null){
+            User user = (User) request.getSession().getAttribute("user");
+            commentService.create(comment,user);
+            articleService.incCommentCount(comment.getArticleId());
+            System.out.println(comment);
+        }else {
+            commentService.incLikeCount(comment.getId());
+        }
     }
 }

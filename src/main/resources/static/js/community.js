@@ -1,3 +1,15 @@
+function incLikeCount(){
+    $.ajax({
+        type: "POST",
+        url: "/comment",
+        contentType: 'application/json',
+        data: JSON.stringify({
+            id: $("#comment_id").val()
+        }),
+        dataType: "json"
+    });
+}
+
 function submit() {
     var content = $("#comment_content").val();
     if (!content) {

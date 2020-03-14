@@ -18,6 +18,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         //将自定义拦截器加到下面，否则在拦截器里使用的Service组件会是Null
         registry.addInterceptor(myLoginInterceptor()).addPathPatterns("/**").
-                excludePathPatterns("/","/index","/login","/register","/bootstrap/**","/css/**","/img/**","/article/**");
+                excludePathPatterns("/","/index","/login","/register","/bootstrap/**","/css/**",
+                        "/fonts/**", "/images/**",  "/img/**", "/js/**", "/article/**");
     }
 }

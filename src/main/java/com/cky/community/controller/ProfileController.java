@@ -41,7 +41,7 @@ public class ProfileController {
             PaginationDto paginationDto = notificationService.list(user.getId(), page, size);
             model.addAttribute("section", "replies");
             model.addAttribute("pagination", paginationDto);
-            model.addAttribute("sectionName", "最新回复");
+            model.addAttribute("sectionName", "最新消息");
         }
         return "profile";
     }

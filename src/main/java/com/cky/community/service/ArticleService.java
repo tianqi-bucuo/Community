@@ -24,4 +24,5 @@ public interface ArticleService {
 
     void incCommentCount(int id);
 
+    List<Article> findHotArticles();
 }

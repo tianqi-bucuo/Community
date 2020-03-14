@@ -33,4 +33,9 @@ public class UserServiceImpl implements UserService {
     public User login(String userName, String password) {
         return userMapper.login(userName, password);
     }
+
+    @Override
+    public void registerWithAvatar(String userName, String password, String avatar) {
+        userMapper.createWithAvatar(userName,password,avatar);
+    }
 }

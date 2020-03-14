@@ -1,0 +1,15 @@
+2020-03-14 09:37:36.404  INFO 41336 --- [main] com.cky.community.CommunityApplication   : Starting CommunityApplication on DESKTOP-RSHH0UH with PID 41336 (F:\JAVA_Code\IDEA_Code\Community\target\classes started by cky in F:\JAVA_Code\IDEA_Code\Community)
+2020-03-14 09:37:36.423  INFO 41336 --- [main] com.cky.community.CommunityApplication   : No active profile set, falling back to default profiles: default
+2020-03-14 09:37:38.413  INFO 41336 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-14 09:37:38.442  INFO 41336 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-14 09:37:38.445  INFO 41336 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-03-14 09:37:38.452  INFO 41336 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+2020-03-14 09:37:38.453  INFO 41336 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-03-14 09:37:38.453  INFO 41336 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-03-14 09:37:38.457  INFO 41336 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+2020-03-14 09:37:38.599  INFO 41336 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-14 09:37:38.599  INFO 41336 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2087 ms
+2020-03-14 09:37:39.146  INFO 41336 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-14 09:37:39.223  INFO 41336 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-03-14 09:37:39.577  INFO 41336 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-14 09:37:39.581  INFO 41336 --- [main] com.cky.community.CommunityApplication   : Started CommunityApplication in 4.237 seconds (JVM running for 6.43)

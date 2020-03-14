@@ -55,9 +55,7 @@ public class CommunityApplicationTests {
 
     @Test
     public void testUserMapper(){
-        for (int i = 0;i < 20;i++){
-            userMapper.create(Integer.toString(i),Integer.toString(i));
-        }
+        userService.registerWithAvatar("cky","123","https://images.cnblogs.com/cnblogs_com/cky-2907183182/1521479/o_background.jpg");
     }
 
     @Test
@@ -67,14 +65,19 @@ public class CommunityApplicationTests {
 
     @Test
     public void testArticleService(){
-        List<Article> articles = articleMapper.getArticleList(1,5);
+        List<Article> articles = articleService.findHotArticles();
         System.out.println(articles);
     }
 
     @Test
     public void testArticleMapper() {
-        List<Article> list = articleMapper.getArticlesByUserId(1,1,5);
-        System.out.println(list);
+        for (int i =100;i < 200;i++){
+            Article article = new Article();
+            article.setAuthorId(1);
+            article.setContent(Integer.toString(i));
+            article.setTitle(Integer.toString(i));
+            articleMapper.create(article);
+        }
     }
 
 

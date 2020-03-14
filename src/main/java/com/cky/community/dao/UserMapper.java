@@ -18,4 +18,9 @@ public interface UserMapper {
 
     List<User> getUserList();
 
+    List<String> getUserNames();
+
+    void createWithAvatar(String userName, String password, String avatar);
+
+    void changeAvatar(String avatar);
 }

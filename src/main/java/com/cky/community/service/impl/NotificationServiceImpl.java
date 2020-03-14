@@ -3,13 +3,14 @@ package com.cky.community.service.impl;
 import com.cky.community.dao.NotificationMapper;
 import com.cky.community.dto.PaginationDto;
 import com.cky.community.entity.Notification;
+import com.cky.community.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 
 @Service
-public class NotificationServiceImpl {
+public class NotificationServiceImpl implements NotificationService {
 
     @Autowired
     private NotificationMapper notificationMapper;

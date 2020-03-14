@@ -19,9 +19,6 @@ import java.util.List;
 public class ArticleController {
 
     @Autowired
-    private ArticleMapper articleMapper;
-
-    @Autowired
     private ArticleServiceImpl articleService;
 
     @Autowired
