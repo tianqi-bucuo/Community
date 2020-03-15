@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>changeData</title>
+    <title>changedata</title>
     <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
 <img id="bg" src="/img/bg2.jpg" />
 <div class="sign-div">
-    <form class="form-signin" action="/changeData" method="post">
+    <form class="form-signin" action="/changedata" method="post">
         <div th:if="${not #strings.isEmpty(session.errorMsg)}" class="form-group">
             <div class="alert alert-danger" th:text="${session.errorMsg}"></div>
         </div>
@@ -21,7 +21,6 @@
         <input class="sign-btn" type="submit" value="点击修改">
         <a href="/">不改了</a>
     </form>
-
 </div>
 </body>
 </html>
