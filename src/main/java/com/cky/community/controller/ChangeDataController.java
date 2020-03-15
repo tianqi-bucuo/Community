@@ -20,7 +20,7 @@ public class ChangeDataController {
 
     @GetMapping("/changeData")
     public String changeAvatar(){
-        return "/changeData";
+        return "/changedata";
     }
 
     @PostMapping("/changeData")
