@@ -14,7 +14,7 @@
     </sql>
     
     <insert id="create">
-        insert into USER (username, password) values
+        insert into user (username, password) values
         (#{userName},#{password})
     </insert>
 
