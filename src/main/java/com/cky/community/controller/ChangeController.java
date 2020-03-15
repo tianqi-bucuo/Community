@@ -13,17 +13,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-public class ChangedataController {
+public class ChangeController {
 
     @Autowired
     private UserMapper userMapper;
 
-    @GetMapping("/changedata")
+    @GetMapping("/change")
     public String changeAvatar(){
-        return "/changedata";
+        return "change";
     }
 
-    @PostMapping("/changedata")
+    @PostMapping("/change")
     public String doChangeAvatar(String userName, String password, String avatar,String originalPassword,
                                  HttpServletRequest request, HttpServletResponse response){
 
@@ -32,17 +32,17 @@ public class ChangedataController {
         if (StringUtils.isEmpty(userName) && StringUtils.isEmpty(password)
                 && StringUtils.isEmpty(avatar)) {
             request.getSession().setAttribute("errorMsg", "信息不能全部为空");
-            return "/changedata";
+            return "/change";
         }else if(StringUtils.isEmpty(originalPassword) || !originalPassword.equals(user.getPassword())){
             request.getSession().setAttribute("errorMsg", "密码错误");
-            return "/changedata";
+            return "/change";
         }else {
             if (userMapper.getUserNames().contains(userName)){
                 request.getSession().setAttribute("errorMsg","用户名重复,换一个？");
-                return "/changedata";
+                return "/change";
             }
             Integer id = user.getId();
-            userMapper.changeData(userName,password,avatar ,id);
+            userMapper.change(userName,password,avatar ,id);
             //清除session
             request.getSession().removeAttribute("user");
             //清除cookie

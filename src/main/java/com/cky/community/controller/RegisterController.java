@@ -39,10 +39,10 @@ public class RegisterController {
 
         if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(password)) {
             session.setAttribute("errorMsg", "用户名或密码不能为空");
-            return "/register";
+            return "register";
         }else if (userMapper.getUserNames().contains(userName)){
             session.setAttribute("errorMsg","用户名重复,换一个？");
-            return "/register";
+            return "register";
         }
         if (avatar==null|| !avatar.startsWith("http")){
             userService.userRegister(userName, password);

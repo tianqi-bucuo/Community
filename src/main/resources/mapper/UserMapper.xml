@@ -48,7 +48,7 @@
         (#{userName},#{password},#{avatar})
     </insert>
 
-    <update id="changeData">
+    <update id="change">
         update community.user a
         <set>
             <if test="userName != null and userName != ''">

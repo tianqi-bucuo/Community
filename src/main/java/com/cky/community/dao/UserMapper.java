@@ -21,6 +21,6 @@ public interface UserMapper {
     void createWithAvatar(@Param("userName") String userName, @Param("password")String password,
                           @Param("avatar") String avatar);
 
-    void changeData(@Param("userName") String userName, @Param("password")String password,
+    void change(@Param("userName") String userName, @Param("password")String password,
                     @Param("avatar") String avatar, @Param("id") Integer id);
 }
