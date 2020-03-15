@@ -48,9 +48,20 @@
         (#{userName},#{password},#{avatar})
     </insert>
 
-    <update id="changeAvatar" parameterType="string">
-        update user
-        set avatar = #{avatar}
+    <update id="changeData">
+        update community.user a
+        <set>
+            <if test="userName != null and userName != ''">
+                a.username = #{userName},
+            </if>
+            <if test="password != null and password != ''">
+                a.password = #{password},
+            </if>
+            <if test="avatar != null and avatar != ''">
+                a.avatar = #{avatar},
+            </if>
+        </set>
+        where a.id = #{id}
     </update>
 
 </mapper>

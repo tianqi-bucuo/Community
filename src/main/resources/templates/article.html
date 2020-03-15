@@ -70,7 +70,7 @@
                         <div class="media-left">
                             <a href="#">
                                 <img class="media-object img-rounded"
-                                     src="/img/cky-logo.png">
+                                     th:src="${comment.user.avatar != null ? comment.user.avatar : '/img/default-avatar.jpg'}">
                             </a>
                         </div>
                         <div class="media-body" th:id="${'comment-body-'+comment.id}">
@@ -96,13 +96,12 @@
                 <h4>
                     提交回复
                 </h4>
-                <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment-sp">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">
                     <div class="media">
                         <div class="media-left">
                             <a href="#">
                                 <img class="media-object img-rounded"
-                                     th:src="${session.user.avatar != null ? session.user.avatar : '/images/default-avatar.png'}">
+                                     th:src="${session.user.avatar != null ? session.user.avatar : '/img/default-avatar.jpg'}">
                             </a>
                         </div>
                     </div>
@@ -122,7 +121,7 @@
                     <div class="media-left">
                         <a href="#">
                             <img class="media-object img-circle"
-                                 src="/img/cky-logo.png">
+                                 th:src="${article.user.avatar != null ? article.user.avatar : '/img/default-avatar.jpg'}">
                         </a>
                     </div>
                     <div class="media-body">

@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class RegisterController {
@@ -49,10 +47,10 @@ public class RegisterController {
         if (avatar==null|| !avatar.startsWith("http")){
             userService.userRegister(userName, password);
         }else {
+            session.removeAttribute("errorMsg");
             userService.registerWithAvatar(userName,password,avatar);
         }
-        session.setAttribute("successMsg","注册成功");
         //注册成功后返回登录界面
-        return "/login";
+        return "redirect:/login";
     }
 }

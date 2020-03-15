@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>changeData</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+<img id="bg" src="/img/bg2.jpg" />
+<div class="sign-div">
+    <form class="form-signin" action="/changeData" method="post">
+        <div th:if="${not #strings.isEmpty(session.errorMsg)}" class="form-group">
+            <div class="alert alert-danger" th:text="${session.errorMsg}"></div>
+        </div>
+        <h1 style="color: white">修改资料</h1>
+        <h3 style="color: white">不想改的部分不填即可</h3>
+        <input class="sign-text" type="text" name="userName" placeholder="用户名">
+        <input class="sign-text" type="password" name="password" placeholder="密码">
+        <input class="sign-text" type="text" name="avatar" placeholder="头像的URL">
+        <input class="sign-text" type="password" name="originalPassword" placeholder="输入你的原密码">
+        <input class="sign-btn" type="submit" value="点击修改">
+        <a href="/">不改了</a>
+    </form>
+
+</div>
+</body>
+</html>

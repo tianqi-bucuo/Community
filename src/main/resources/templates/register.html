@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
-<img id="bg" src="/img/bg.jpg" />
+<img id="bg" src="/img/bg2.jpg" />
 <div class="sign-div">
     <form class="form-signin" action="/register" method="post">
         <div th:if="${not #strings.isEmpty(session.errorMsg)}" class="form-group">
@@ -15,7 +15,7 @@
         <div th:if="${not #strings.isEmpty(session.successMsg)}" class="form-group">
             <div class="alert alert-danger" th:text="${session.successMsg}"></div>
         </div>
-        <h1 style="color: white">注册</h1>
+        <h1 style="color: lightgray">注册</h1>
         <input class="sign-text" type="text" name="userName" placeholder="用户名" required="" autofocus="">
         <input class="sign-text" type="password" name="password" placeholder="密码" required="">
         <input class="sign-text" type="text" name="avatar" placeholder="头像的URL,不填则使用默认头像(包你喜欢)">

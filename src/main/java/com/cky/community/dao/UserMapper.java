@@ -3,8 +3,6 @@ package com.cky.community.dao;
 import com.cky.community.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -20,7 +18,9 @@ public interface UserMapper {
 
     List<String> getUserNames();
 
-    void createWithAvatar(String userName, String password, String avatar);
+    void createWithAvatar(@Param("userName") String userName, @Param("password")String password,
+                          @Param("avatar") String avatar);
 
-    void changeAvatar(String avatar);
+    void changeData(@Param("userName") String userName, @Param("password")String password,
+                    @Param("avatar") String avatar, @Param("id") Integer id);
 }

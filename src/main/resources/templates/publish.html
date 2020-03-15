@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:margin-top="http://www.w3.org/1999/xhtml">
 <head>
     <title>发布</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -18,14 +18,14 @@
 <div class="container-fluid main">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-            <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 发起</h2>
+            <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 发布</h2>
             <hr>
 
             <form action="/publish" method="post">
                 <input type="hidden" name="id" th:value="${id}">
                 <div class="form-group">
                     <label for="title">文章标题</label>
-                    <input type="text" class="form-control" th:value="${title}" id="title" name="title" placeholder="问题标题……">
+                    <input type="text" class="form-control" th:value="${title}" id="title" name="title" placeholder="文章标题">
                 </div>
                 <div class="form-group" id="question-editor">
                     <label for="content">文章内容</label>
@@ -36,14 +36,13 @@
                     $(function () {
                         var editor = editormd("question-editor", {
                             width: "100%",
-                            height: 350,
+                            height: 700,
                             path: "/js/lib/",
                             delay: 0,
-                            watch: false,
-                            placeholder: "请输入问题描述",
+                            watch: true,
+                            placeholder: "请输入文章内容",
                             imageUpload: true,
                             imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-                            imageUploadURL: "/file/upload",
                         });
                     });
                 </script>
@@ -51,7 +50,7 @@
                     <label for="tag">添加标签:</label>
                     <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag"
                            autocomplete="off"
-                           placeholder="输入标签，多个标签以空格号分隔"
+                           placeholder="输入标签，可自定义，多个标签以空格分隔"
                            onclick="showSelectTag()">
                     <div id="select-tag" class="publish-tag-tab">
                         <ul class="nav nav-tabs" role="tablist">
@@ -94,11 +93,19 @@
                 </div>
             </form>
         </div>
-        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <h3>问题发起指南</h3>
-            • 问题标题: 请用精简的语言描述您发布的问题，不超过25字 <br>
-            • 问题补充: 详细补充您的问题内容，并确保问题描述清晰直观, 并提供一些相关的资料<br>
-            • 选择标签: 选择一个或者多个合适的标签，用逗号隔开，每个标签不超过10个字<br>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12" margin-top:60px>
+            <h1></h1><br>
+            <h4 align="center">富强&nbsp;&nbsp;&nbsp;&nbsp;民主&nbsp;&nbsp;&nbsp;&nbsp;文明&nbsp;&nbsp;&nbsp;&nbsp;和谐</h4><br>
+            <h4 align="center">自由&nbsp;&nbsp;&nbsp;&nbsp;平等&nbsp;&nbsp;&nbsp;&nbsp;公正&nbsp;&nbsp;&nbsp;&nbsp;法治</h4><br>
+            <h4 align="center">爱国&nbsp;&nbsp;&nbsp;&nbsp;敬业&nbsp;&nbsp;&nbsp;&nbsp;诚信&nbsp;&nbsp;&nbsp;&nbsp;友善</h4><br>
+            <h1></h1><br>
+            <h1></h1><br>
+            <h1></h1><br>
+            <h1></h1><br>
+            <h1></h1><br>
+            <hr>
+            <h5>友情提示:本站已与百度达成长期合作关系，如遇到问题可<a href="https://www.baidu.com/">点击此处</a>直接搜索 !</h5>
+
         </div>
     </div>
 </div>

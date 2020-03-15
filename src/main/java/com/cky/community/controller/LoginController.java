@@ -40,14 +40,16 @@ public class LoginController {
             return "/login";
         }
         User user = userService.login(userName, password);
-        if (user != null) {
+        if (user == null) {
+            session.setAttribute("errorMsg", "用户名或密码错误");
+            return "login";
+
+        } else {
+            session.removeAttribute("errorMsg");
             session.setAttribute("user", user);
             //session过期时间设置为7200秒 即两小时
             //session.setMaxInactiveInterval(60 * 60 * 2);
             return "redirect:/";
-        } else {
-            session.setAttribute("errorMsg", "用户名或密码错误");
-            return "login";
         }
     }
 
@@ -68,7 +70,6 @@ public class LoginController {
                     response.addCookie(cookie);
                 }
             }catch(Exception ex){
-                System.out.println("清理cookie异常");
             }
         }
         return "redirect:/";

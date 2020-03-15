@@ -55,7 +55,7 @@ public class CommunityApplicationTests {
 
     @Test
     public void testUserMapper(){
-        userService.registerWithAvatar("cky","123","https://images.cnblogs.com/cnblogs_com/cky-2907183182/1521479/o_background.jpg");
+        userMapper.changeData("11","","https://images.cnblogs.com/cnblogs_com/cky-2907183182/1521479/o_backgr",8);
     }
 
     @Test

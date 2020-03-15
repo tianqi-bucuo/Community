@@ -23,7 +23,7 @@
                     <div class="media-left">
                         <a href="#">
                             <img class="media-object img-rounded"
-                                 src="/img/cky-logo.png">
+                                 th:src="${article.user.avatar != null ? article.user.avatar : '/img/default-avatar.jpg'}">
                         </a>
                     </div>
                     <div class="media-body">
