@@ -1,10 +1,7 @@
 package com.cky.community.controller;
 
-import com.cky.community.dao.ArticleMapper;
 import com.cky.community.dto.ArticleDto;
 import com.cky.community.dto.CommentDto;
-import com.cky.community.entity.Article;
-import com.cky.community.entity.Comment;
 import com.cky.community.service.impl.ArticleServiceImpl;
 import com.cky.community.service.impl.CommentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

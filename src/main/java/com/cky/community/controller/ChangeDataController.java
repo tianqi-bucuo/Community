@@ -13,18 +13,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-public class ChangeController {
+public class ChangeDataController {
 
     @Autowired
     private UserMapper userMapper;
 
-    @GetMapping("/change")
-    public String changeAvatar(){
-        return "change";
+    @GetMapping("/changeData")
+    public String changeData(){
+        return "changeData";
     }
 
-    @PostMapping("/change")
-    public String doChangeAvatar(String userName, String password, String avatar,String originalPassword,
+    @PostMapping("/changeData")
+    public String doChangeData(String userName, String password, String avatar,String originalPassword,
                                  HttpServletRequest request, HttpServletResponse response){
 
         if (request.getSession().getAttribute("user")==null) return "redirect:/";
@@ -32,14 +32,14 @@ public class ChangeController {
         if (StringUtils.isEmpty(userName) && StringUtils.isEmpty(password)
                 && StringUtils.isEmpty(avatar)) {
             request.getSession().setAttribute("errorMsg", "信息不能全部为空");
-            return "/change";
+            return "/changeData";
         }else if(StringUtils.isEmpty(originalPassword) || !originalPassword.equals(user.getPassword())){
             request.getSession().setAttribute("errorMsg", "密码错误");
-            return "/change";
+            return "/changeData";
         }else {
             if (userMapper.getUserNames().contains(userName)){
                 request.getSession().setAttribute("errorMsg","用户名重复,换一个？");
-                return "/change";
+                return "/changeData";
             }
             Integer id = user.getId();
             userMapper.change(userName,password,avatar ,id);
