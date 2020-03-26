@@ -62,7 +62,7 @@
             <!--回复-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h4>
-                    <span th:text="${article.commentCount}"></span> 个回复
+                    <span th:text="${article.commentCount}"></span> 个评论
                 </h4>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment-sp">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comments" th:each="comment : ${comments}">
@@ -91,10 +91,10 @@
                 </div>
             </div>
 
-            <!--回复输入框-->
+            <!--回复输入框1-->
             <div th:if="${session.user != null}" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h4>
-                    提交回复
+                    提交评论
                 </h4>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">
                     <div class="media">
@@ -108,7 +108,17 @@
                     <input type="hidden" id="article_id" th:value="${article.id}">
                     <input type="hidden" id="user_id" th:value="${session.user.id}">
                     <textarea class="form-control comment" rows="6" id="comment_content"></textarea>
-                    <button type="button" class="btn btn-success btn-comment" onclick="submit()">回复</button>
+                    <button type="button" class="btn btn-success btn-comment" onclick="submit()">评论</button>
+                </div>
+            </div>
+            <!--回复输入框2-->
+            <div th:if="${session.user == null}" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登陆后才能点赞和评论~~
+                </h4>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <textarea class="form-control comment" rows="6"></textarea>
+                    <button type="button" class="btn btn-success btn-comment">评论</button>
                 </div>
             </div>
         </div>

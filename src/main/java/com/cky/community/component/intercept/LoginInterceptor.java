@@ -1,6 +1,5 @@
 package com.cky.community.component.intercept;
 
-import com.cky.community.dao.NotificationMapper;
 import com.cky.community.entity.User;
 import com.cky.community.service.impl.NotificationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

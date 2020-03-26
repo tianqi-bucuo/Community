@@ -21,6 +21,7 @@ public class ArticleController {
     @Autowired
     private CommentServiceImpl commentService;
 
+    //@PathVariable注解，绑定url中的占位符"id"
     @GetMapping("/article/{id}")
     public String article(@PathVariable(name = "id") int articleId,Model model){
         ArticleDto articleDto = articleService.findById(articleId);

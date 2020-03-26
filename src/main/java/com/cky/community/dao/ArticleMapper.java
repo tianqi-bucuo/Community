@@ -4,7 +4,6 @@ import com.cky.community.dto.ArticleQueryDto;
 import com.cky.community.entity.Article;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 
 @Mapper
