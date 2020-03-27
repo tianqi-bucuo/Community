@@ -25,7 +25,7 @@
         <include refid="Base_Column_List" />
         from comment
         where article_id = #{articleId}
-        order by create_time desc
+        order by create_time asc
     </select>
 
     <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
