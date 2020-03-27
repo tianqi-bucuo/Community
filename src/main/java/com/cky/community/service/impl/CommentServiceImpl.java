@@ -1,7 +1,6 @@
 package com.cky.community.service.impl;
 
 import com.cky.community.component.enums.NotificationStatusEnum;
-import com.cky.community.component.enums.NotificationTypeEnum;
 import com.cky.community.dao.ArticleMapper;
 import com.cky.community.dao.CommentMapper;
 import com.cky.community.dao.NotificationMapper;
@@ -42,8 +41,7 @@ public class CommentServiceImpl implements CommentService {
 
         Article article = articleMapper.findById(comment.getArticleId());
         commentMapper.create(comment);
-        createNotify(comment, article.getAuthorId(), user.getUserName(), article.getTitle(),
-                NotificationTypeEnum.REPLY_QUESTION, article.getId());
+        createNotify(comment, article.getAuthorId(), user.getUserName(), article.getTitle(), article.getId());
     }
 
     @Override
@@ -74,7 +72,7 @@ public class CommentServiceImpl implements CommentService {
         commentMapper.incLikeCount(commentId);
     }
 
-    private void createNotify(Comment comment, Integer receiverId, String notifierName, String articleTitle, NotificationTypeEnum notificationType, Integer articleId) {
+    private void createNotify(Comment comment, Integer receiverId, String notifierName, String articleTitle, Integer articleId) {
         if (receiverId == comment.getUserId()) {
             return;
         }
