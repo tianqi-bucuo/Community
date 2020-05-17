@@ -79,11 +79,11 @@
                             </h5>
                             <div th:text="${comment.content}"></div>
                             <div class="menu">
-                                <!--<a onclick="incLikeCount()">-->
-                                    <!--<input type="hidden" id="comment_id" th:value="${comment.id}">-->
-                                    <!--<span class="glyphicon glyphicon-thumbs-up icon"></span>-->
-                                <!--</a>-->
-                                <!--<span th:text="${comment.likeCount}"></span>-->
+                                <a th:onclick="'incLikeCount('+${comment.id}+');'">
+                                    <input type="hidden" id="comment_id" th:value="${comment.id}">
+                                    <span class="glyphicon glyphicon-thumbs-up icon"></span>
+                                </a>
+                                <span th:id="${comment.id}" th:text="${comment.likeCount}"></span>
                                 <span class="pull-right" th:text="${#dates.format(comment.createTime,'yyyy-MM-dd HH:mm')}"></span>
                             </div>
                         </div>

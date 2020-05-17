@@ -21,13 +21,13 @@ public class CommentController {
 
     //如果不加@ResponseBody注解，会出现找不到"comment"模板的异常(没有这个页面)
     @ResponseBody
-    @PostMapping(value = "/comment")
+    @PostMapping("/comment")
     public void create(@RequestBody Comment comment, HttpServletRequest request){
         if (comment.getArticleId()!=null){
             User user = (User) request.getSession().getAttribute("user");
             commentService.create(comment,user);
             articleService.incCommentCount(comment.getArticleId());
-            System.out.println(comment);
+            System.out.println(comment.getId());
         }else {
             commentService.incLikeCount(comment.getId());
         }

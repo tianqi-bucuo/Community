@@ -1,13 +1,14 @@
-function incLikeCount(){
+function incLikeCount(cid){
     $.ajax({
         type: "POST",
         url: "/comment",
         contentType: 'application/json',
         data: JSON.stringify({
-            id: $("#comment_id").val()
+            id: cid
         }),
         dataType: "json"
     });
+    $('#'+cid).text(parseInt($('#'+cid).text())+1)
 }
 
 function submit() {
