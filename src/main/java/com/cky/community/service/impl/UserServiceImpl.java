@@ -12,7 +12,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
-
     @Override
     public void userRegister(String userName,String password) {
         userMapper.create(userName, password);

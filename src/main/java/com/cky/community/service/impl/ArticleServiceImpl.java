@@ -28,10 +28,6 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private ArticleMapper articleMapper;
 
-    /**
-     * 用于注册用户
-     * @param article
-     */
     @Override
     public void create(Article article) {
         articleMapper.create(article);
