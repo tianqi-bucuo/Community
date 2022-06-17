@@ -55,7 +55,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.57</version>
+            <version>1.2.83</version>
         </dependency>
         <!--不加入此依赖，启动时会报"未知的枚举常量"-->
         <dependency>
